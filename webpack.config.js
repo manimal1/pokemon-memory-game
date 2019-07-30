@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: ['@babel/polyfill', './src/index.jsx'],
+  entry: ['@babel/polyfill', './src/index.js'],
   output: {
     path: path.join(__dirname, '/build'),
     filename: 'bundle.[hash].js'
