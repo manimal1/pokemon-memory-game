@@ -4,7 +4,7 @@ The player has to pick the correct items in the order shown
 
 ## Introduction
 
-Welcome to our Fullstack technical test!
+This is a Fullstack technical test for a large organization.
 
 For this test we want to see your skills and knowledge by developing a small and fun game: **Sequence memory game**.
 
@@ -58,3 +58,5 @@ Compress your solution (without the `/node_modules` and `/build` folders) and se
 * To create the production bundle just run `yarn build`
 
 If for your final solution we need to run something else (like `yarn test` for unit testing for example) please add it here :)
+
+(I DID add unit tests, so please do run `yarn test`)
