@@ -4,7 +4,6 @@ import { compose } from 'redux'
 
 import {
   handleStart,
-  handleRestart,
   setCompleteSequence,
   setPartialSequence,
   switchTurnToComputer
@@ -17,7 +16,6 @@ class GameConsole extends Component {
     super(props)
     this.handleStartSequence = this.handleStartSequence.bind(this)
     this.startGame = this.startGame.bind(this)
-    this.restartGame = this.restartGame.bind(this)
   }
 
   handleStartSequence () {
@@ -45,20 +43,14 @@ class GameConsole extends Component {
     this.handleStartSequence()
   }
 
-  restartGame () {
-    this.props.handleRestart()
-    this.initiateStartSequence()
-  }
-
   render () {
     const { gameConsole, play } = this.props
     const gameStatus = gameConsole.status
     const turnCounter = play.partialSequence.length
     const startGame = this.startGame
-    const restartGame = this.restartGame
 
     return (
-      <GameConsoleView {...{ startGame, restartGame, turnCounter, gameStatus }} />
+      <GameConsoleView {...{ startGame, turnCounter, gameStatus }} />
     )
   }
 }
@@ -74,7 +66,6 @@ export default compose(
     mapStateToProps,
     {
       handleStart,
-      handleRestart,
       setCompleteSequence,
       setPartialSequence,
       switchTurnToComputer
