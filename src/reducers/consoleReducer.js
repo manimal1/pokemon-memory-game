@@ -29,6 +29,11 @@ const consoleReducer = (state = initialState, action) => {
         ...initialState
       }
 
+    case PLAY.PLAYER_WINS:
+      return {
+        ...initialState
+      }
+
     default:
       return state
   }

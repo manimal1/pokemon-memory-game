@@ -1,4 +1,4 @@
-import { POKEMON, CONSOLE } from 'appConstants'
+import { POKEMON } from 'appConstants'
 
 const {
   GET_ALL_POKEMON_REQUEST,
@@ -35,9 +35,6 @@ const consoleReducer = (state = initialState, action) => {
         error: payload,
         isFetching: false
       }
-
-    case CONSOLE.RESTART:
-      return initialState
 
     default:
       return state
