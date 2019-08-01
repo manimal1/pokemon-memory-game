@@ -19,14 +19,16 @@ class Game extends Component {
     return (
       <GameLayout {...{ isMobile }}>
         {isFetching &&
-          <h1>Loading!</h1>
+          <h1 style={{ textAlign: 'center' }}>Loading!</h1>
         }
-        <>
-          <GameConsole />
-          <GameBoard {...{ isMobile }}>
-            <PlayController {...{ isMobile }} />
-          </GameBoard>
-        </>
+        {!isFetching &&
+          <>
+            <GameConsole />
+            <GameBoard {...{ isMobile }}>
+              <PlayController {...{ isMobile }} />
+            </GameBoard>
+          </>
+        }
       </GameLayout>
     )
   }
