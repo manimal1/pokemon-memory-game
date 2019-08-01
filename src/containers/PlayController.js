@@ -22,9 +22,14 @@ class PlayController extends Component {
       pokeAnimate: {},
       isMounted: false
     }
+    this.setPokeAnimateAttribute = this.setPokeAnimateAttribute.bind(this)
     this.handleUserSelectGameSquare = this.handleUserSelectGameSquare.bind(this)
+    this.handlePlayActions = this.handlePlayActions.bind(this)
+    this.handlePlayerWrongSelection = this.handlePlayerWrongSelection.bind(this)
     this.handleSquareAnimation = this.handleSquareAnimation.bind(this)
+    this.setSquareAnimateTimer = this.setSquareAnimateTimer.bind(this)
     this.setSquareToAnimate = this.setSquareToAnimate.bind(this)
+    this.renderGameSquares = this.renderGameSquares.bind(this)
   }
 
   componentDidMount () {
@@ -74,11 +79,9 @@ class PlayController extends Component {
     const {
       pokemonData,
       play,
-      setCompleteSequence,
       setPlayerSequence,
       updatePlayerTurnCount,
-      handleCheckPlayerSequence,
-      handlePlayerLoses
+      handleCheckPlayerSequence
     } = this.props
     const {
       completeSequence,
@@ -92,13 +95,19 @@ class PlayController extends Component {
     const isPlayerSelectionCorrect = partialSequence[playerTurnCount] === updatedPlayerSequence[playerTurnCount]
 
     if (!isPlayerSelectionCorrect) {
-      window.alert(NOTIFICATION.LOSER)
-      handlePlayerLoses()
-      return setCompleteSequence(pokemon)
+      return this.handlePlayerWrongSelection(pokemon)
     }
+
     setPlayerSequence(updatedPlayerSequence)
     updatePlayerTurnCount(incrementPlayerTurnCount)
     handleCheckPlayerSequence(updatedPlayerSequence, partialSequence, completeSequence)
+  }
+
+  handlePlayerWrongSelection (pokemon) {
+    const { setCompleteSequence, handlePlayerLoses } = this.props
+    window.alert(NOTIFICATION.LOSER)
+    handlePlayerLoses()
+    setCompleteSequence(pokemon)
   }
 
   // handle game square animation

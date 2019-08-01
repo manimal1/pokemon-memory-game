@@ -34,7 +34,7 @@ class GameConsole extends Component {
         const firstItem = play.completeSequence[0]
         // set our first step in the partial order, which will be incremented and expanded
         // by the ComputerPlayController component
-        let partialSequence = [firstItem]
+        const partialSequence = [firstItem]
         setPartialSequence(partialSequence)
         switchTurnToComputer()
       })
