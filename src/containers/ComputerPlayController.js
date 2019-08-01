@@ -14,11 +14,12 @@ class ComputerPlayController extends Component {
     this.playPartialSequence = this.playPartialSequence.bind(this)
   }
 
-  componentDidUpdate () {
+  componentDidUpdate (prevProps) {
     const { play } = this.props
     const { turn, partialSequence } = play
+    const isComputerTurn = turn === PLAY.COMPUTER_TURN
 
-    if (turn === PLAY.COMPUTER_TURN) {
+    if (prevProps.turn !== turn && isComputerTurn) {
       this.playPartialSequence(partialSequence)
     }
   }
