@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import isEmpty from 'validate.io-empty'
 import { APP, CONSOLE, PLAY, NOTIFICATION } from 'appConstants'
 
 import {
@@ -19,10 +18,8 @@ class PlayController extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      pokeAnimate: {},
-      isMounted: false
+      pokeAnimate: {}
     }
-    this.setPokeAnimateAttribute = this.setPokeAnimateAttribute.bind(this)
     this.handleUserSelectGameSquare = this.handleUserSelectGameSquare.bind(this)
     this.handlePlayActions = this.handlePlayActions.bind(this)
     this.handlePlayerWrongSelection = this.handlePlayerWrongSelection.bind(this)
@@ -30,38 +27,6 @@ class PlayController extends Component {
     this.setSquareAnimateTimer = this.setSquareAnimateTimer.bind(this)
     this.setSquareToAnimate = this.setSquareToAnimate.bind(this)
     this.renderGameSquares = this.renderGameSquares.bind(this)
-  }
-
-  componentDidMount () {
-    this.setState({ isMounted: true })
-  }
-
-  componentWillUnmount () {
-    this.setState({ isMounted: false })
-  }
-
-  componentDidUpdate (prevProps) {
-    const { isMounted } = this.state
-    const { pokemonData } = this.props
-    const { pokemon } = pokemonData
-    const hasPokemon = !!pokemon && !isEmpty(pokemon)
-    const isPokemonPropsChange = prevProps.pokemonData.pokemon !== pokemon
-
-    // sets animation boolean for each square
-    // this is used by the component to add/remove animation effects
-    // I handle square animation effects using component state
-    // but base-character colors I set in Redux state intentionally
-    if (isPokemonPropsChange && hasPokemon && isMounted) {
-      this.setPokeAnimateAttribute(pokemon)
-    }
-  }
-
-  setPokeAnimateAttribute (pokemon) {
-    let pokeAnimate = {}
-    pokemon.forEach(poke => {
-      pokeAnimate[poke.name] = false
-    })
-    this.setState({ pokeAnimate })
   }
 
   // handles when a user clicks a game square, triggering animation
