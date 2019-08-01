@@ -65,3 +65,4 @@ typings/
 
 # ide's
 .vscode
+jsconfig.json
